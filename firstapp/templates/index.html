@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%extends 'master.html'%}
+    {% load static %}
+</head>
+
+<body>
+    {% block body%}
+    <style>
+        #logopop {
+            position: absolute;
+            margin-top: 2vw;
+            margin-left: 68vw;
+            height: 30vw;
+            width: 30vw;
+            background-image: url("{%static 'logo3.png'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            animation-name: logopopup;
+            animation-duration: 3s;
+            z-index: -1;
+        }
+
+        #ab {
+            position: absolute;
+            margin-top: 2vw;
+            margin-left: 4vw;
+            height: 40vw;
+            width: 15vw;
+            background-image: url("{%static 'ab1.png'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            animation-name: abpopup;
+            animation-duration: 5s;
+            z-index: -1;
+        }
+
+        @keyframes abpopup {
+            0% {
+                margin-left: -15vw;
+            }
+
+            60% {
+                margin-left: -15vw;
+            }
+
+            100% {
+                margin-left: 4vw;
+            }
+        }
+
+        @keyframes logopopup {
+            0% {
+                margin-left: 50vw;
+                height: 0vw;
+                width: 0vw;
+            }
+
+            60% {
+                margin-left: 35vw;
+                height: 30vw;
+                width: 30vw;
+            }
+
+            100% {
+                margin-left: 68vw;
+            }
+        }
+
+        #content {
+            border: 3px solid blue;
+            display: inline-block;
+            margin-top: 2vw;
+            margin-left: 30vw;
+            width: 30vw;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 2%;
+            box-shadow: 10px 10px 5px gray;
+            object-fit: cover;
+            animation-name: main;
+            animation-duration: 6s;
+        }
+
+        @keyframes main{
+            0%{
+                opacity: 0;
+            }
+            80%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+    </style>
+
+
+    <div id="logopop"></div>
+    <div id="ab"></div>
+    <div id="content">
+        <p style="color:white;">Log in to Your Account</p>
+        <a href="{%url 'authi:login'%}"><button type="button" class="btn btn-light" style="font-size: 3vw;"><b>Login</b></button></a><br><br>
+        <p style="color:white;">New User? Register for free</p>
+        <a href="{%url 'authi:signup'%}"><button type="button" class="btn btn-light" style="font-size: 3vw;"><b>Sign Up</b></button></a>
+    </div>
+    {%endblock%}
+</body>
+
+</html>

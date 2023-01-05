@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%extends 'master.html'%}
+    {% load static %}
+</head>
+
+<body>
+    {% block body%}
+    <style>
+        #logopop {
+            position: absolute;
+            margin-top: 2vw;
+            margin-left: 68vw;
+            height: 30vw;
+            width: 30vw;
+            background-image: url("{%static 'logo3.png'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        #ab {
+            position: absolute;
+            margin-top: 2vw;
+            margin-left: 4vw;
+            height: 40vw;
+            width: 15vw;
+            background-image: url("{%static 'ab1.png'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -1;
+        }
+
+
+        #content {
+            border: 3px solid blue;
+            display: inline-block;
+            margin-top: 2vw;
+            margin-left: 30vw;
+            width: 30vw;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15%;
+            padding: 2%;
+            box-shadow: 10px 10px 5px gray;
+            object-fit: cover;
+            animation-name: main;
+            animation-duration: 2s;
+        }
+
+        @keyframes main {
+            0% {
+                opacity: 0;
+                border-radius: 50%;
+
+            }
+
+            100% {
+                border-radius: 15%;
+
+            }
+        }
+    </style>
+
+    <div id="logopop"></div>
+    <div id="ab"></div>
+    <div id="content" style="align-items: center;">
+        <h1 style="color: white;text-align: center;">Lets Play</h1><br>
+        <h1 style="color: white;text-align: center; font-size: 50px;">Kaun Banega Crorepati</h1><br>
+        <center>
+            <form action="play" method="post">
+                {%csrf_token%}
+                <input type="hidden" name="qno" value="0">
+                <button type="submit" class="btn btn-primary" style="font-size: 40px;"><b>Play</b>
+                </button>
+            </form><br><br>
+        </center><br><br><br><br>
+
+        <center><a href="transfer"><button type="button" class="btn btn-danger" style="font-size: 20px;"><b>Transfer
+                        Money</b></button></a></center>
+    </div>
+    {%endblock%}
+</body>
+
+</html>

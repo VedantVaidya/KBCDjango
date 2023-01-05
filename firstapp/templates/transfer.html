@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%extends 'master.html'%}
+    {% load static %}
+</head>
+
+<body>
+    {% block body%}
+    <style>
+        #logopop {
+            position: absolute;
+            margin-top: 2vw;
+            margin-left: 68vw;
+            height: 30vw;
+            width: 30vw;
+            background-image: url("{%static 'logo3.png'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        #ab {
+            position: absolute;
+            margin-top: 2vw;
+            margin-left: 4vw;
+            height: 40vw;
+            width: 15vw;
+            background-image: url("{%static 'ab1.png'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        #content {
+            border: 3px solid blue;
+            display: inline-block;
+            margin-top: 2vw;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15%;
+            padding: 2%;
+            box-shadow: 10px 10px 5px gray;
+            object-fit: cover;
+            animation-name: main;
+            animation-duration: 2s;
+        }
+
+        @keyframes main {
+            0% {
+                opacity: 0;
+                border-radius: 50%;
+
+            }
+
+            100% {
+                border-radius: 15%;
+
+            }
+
+        }
+
+        .card {
+            width: 18rem;
+        }
+
+        .card:hover {
+            width: 25rem;
+        }
+    </style>
+
+    <div id="logopop"></div>
+    <div id="ab"></div>
+    <center>
+        <div id="content">
+
+            <div class="card" style="display: inline-block;">
+                <img src="{%static 'ab1.jpg'%}" class="card-img-top" alt="...">
+                <div class="card-body" style="background-color: rgb(0, 0, 122);">
+                    <p class="card-text" style="color: white;">Transfer to Another User.</p>
+                    <button type="button" class="btn btn-light" style="font-size: 20px;" data-bs-toggle="modal"
+                        data-bs-target="#transferkbc"><b>Transfer</b></button>
+                </div>
+            </div>
+
+
+            <div class="card" style="display: inline-block; margin: 5vw;">
+                <img src="{%static 'bplogo.jpg'%}" class="card-img-top" alt="...">
+                <div class="card-body" style="background-color: rgb(0, 0, 122);">
+                    <p class="card-text" style="color: white;">Transfer to Business Portal.</p>
+                    <button type="button" class="btn btn-light" style="font-size: 20px;" data-bs-toggle="modal"
+                        data-bs-target="#transferbp"><b>Transfer</b></button>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="modal fade" id="transferkbc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Transfer to another User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="transferkbc">
+                        {%csrf_token%}
+                        <div class="mb-3">
+                            <label for="receiver" class="form-label">Transfer to: </label>
+                            <input type="email" name="receiver" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">Enter the Email id of the receiver</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" name="amount" class="form-control" id="exampleInputPassword1">
+                        </div>
+                </div>
+                <div class="modal-footer" style="background-color: rgb(0, 0, 122);">
+                    <button type="submit" class="btn btn-light" style="border: 1; font-size: 20px;"><b>Transfer</b></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="transferbp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Transfer to Business Portal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="transferbp">
+                        {%csrf_token%}
+                        <div class="mb-3">
+                            <label for="receiver" class="form-label">Transfer to Business Portal: </label>
+                            <input type="email" name="receiver" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">Enter the Email of Business Portal account</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" name="amount" class="form-control" id="exampleInputPassword1">
+                        </div>
+                </div>
+                <div class="modal-footer" style="background-color: rgb(0, 0, 122);">
+                    <button type="submit" class="btn btn-light" style="border: 1; font-size: 20px;"><b>Transfer</b></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {%endblock%}
+</body>
+
+</html>

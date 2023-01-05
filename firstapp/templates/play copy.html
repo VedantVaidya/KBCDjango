@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link href="{%static 'bootstrap-5.3.0-alpha1-dist\css/bootstrap.min.css'%}" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        #bgimage {
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            position: fixed;
+        }
+
+        #logo {
+            border-radius: 50%;
+        }
+
+        #question {
+            position: absolute;
+            bottom: 27vh;
+            height: 13vh;
+            width: 100vw;
+
+        }
+
+        #a {
+            position: absolute;
+            display: inline-block;
+            bottom: 18vh;
+            height: 8vh;
+            width: 30vw;
+            left: 20%;
+            text-align: center;
+        }
+
+        #b {
+            position: absolute;
+            display: inline-block;
+            bottom: 18vh;
+            height: 8vh;
+            width: 30vw;
+            right: 20%;
+        }
+
+        #c {
+            position: absolute;
+            display: inline-block;
+            bottom: 9vh;
+            height: 8vh;
+            width: 30vw;
+            left: 20%;
+        }
+
+        #d {
+            position: absolute;
+            display: inline-block;
+            bottom: 9vh;
+            height: 8vh;
+            width: 30vw;
+            right: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: rgb(0, 0, 122);" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img id='logo' src="{%static 'logo.jpg'%}" alt="Bootstrap" width="50" height="50">
+            </a>
+            <a class="navbar-brand" href="/" style="font-size: 25px;"><b>Home</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>&nbsp;&nbsp;&nbsp;
+                </form>
+                <a href="{%url 'authi:login'%}"><button type="button" class="btn btn-light"
+                        style="font-size: 20px;"><b>Login</b></button></a>&nbsp;&nbsp;&nbsp;
+                <a href="{%url 'authi:signup'%}"><button type="button" class="btn btn-light"
+                        style="font-size: 20px;"><b>Sign Up</b></button></a>&nbsp;&nbsp;&nbsp;
+                <a href="{%url 'authi:logout'%}"><button type="button" class="btn btn-light"
+                        style="font-size: 20px;"><b>Logout</b></button></a>&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </nav>
+    {%for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="margin-bottom: 0px;">
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endfor%}
+    <img id="bgimage" src="{%static 'ab2.jpg'%}">
+
+
+
+    <div id="question">
+        <h1 style="z-index: 0; position:absolute; color:white; left:47%; bottom:8%;"> {{question}}</h1>
+        <img src="{% static 'question.png'%}" style="height: 13vh; width: 100vw; z-index: -1;">
+    </div>
+    <div id="a">
+        <h1 style="z-index: 0; position:absolute; color:white; left:10%; bottom:-8%;"><a
+                href="" style="color: white">A)
+                {{opta}}</a></h1>
+        <img src="{% static 'answer.png'%}" style="height: 8vh; width: 30vw; z-index: -1; ">
+
+    </div>
+    <div id="b">
+        <h1 style="z-index: 0; position:absolute; color:white; left:10%; bottom:-8%;"><a
+                href="" style="color: white">B)
+                {{optb}}</a></h1>
+        <img src="/static/answer.png" style="height: 8vh; width: 30vw; z-index: -1;">
+    </div><br>
+    <div id="c">
+        <h1 style="z-index: 0; position:absolute; color:white; left:10%; bottom:-8%;"><a
+                href="" style="color: white">C)
+                {{optc}}</a></h1>
+        <img src="{% static 'answer.png'%}" style="height: 8vh; width: 30vw; z-index: -1;">
+    </div>
+    <div id="d">
+        <h1 style="z-index: 0; position:absolute; color:white; left:10%; bottom:-8%;"><a
+                href="" style="color: white">D)
+                {{optd}}</a></h1>
+        <img src="{% static 'answer.png'%}" style="height: 8vh; width: 30vw; z-index: -1;">
+    </div>
+
+
+    <script src="{%static 'bootstrap-5.3.0-alpha1-dist\js/bootstrap.bundle.min.js'%}"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
